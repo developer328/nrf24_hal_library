@@ -10,6 +10,7 @@
 #include "NRF24.h"
 
 extern SPI_HandleTypeDef hspiX;
+extern TIM_HandleTypeDef htimX;
 
 
 void csn_high(void){
@@ -529,6 +530,22 @@ void nrf24_receive(uint8_t *data, uint8_t size){
 	nrf24_clear_rx_dr();
 }
 
+void delay_us(uint16_t del_time){
+	__HAL_TIM_SET_COUNTER(&htimX, 0);
+	uint16_t tmp_t = __HAL_TIM_GET_COUNTER(&htimX);
+	while((__HAL_TIM_GET_COUNTER(&htimX)-tmp_t) < del_time){
+		;
+	}
+}
+
+void nrf24_start_const_carrier(){
+
+}
+
+void nrf24_stop_const_carrier(){
+
+}
+
 void nrf24_defaults(void){
 	ce_low();
 
@@ -562,6 +579,10 @@ void nrf24_defaults(void){
 }
 
 void nrf24_init(void){
+
+	if(HAL_TIM_Base_Start(&htimX) != HAL_OK){
+		Error_Handler();
+	}
 
 	nrf24_pwr_up();
 

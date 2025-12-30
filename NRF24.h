@@ -42,7 +42,6 @@ enum {
 };
 
 
-
 /*
  * Set defaults
  *
@@ -350,6 +349,20 @@ uint8_t nrf24_data_available(void);
  * Receive data
  */
 void nrf24_receive(uint8_t *data, uint8_t size);
+
+
+//Will be soon
+void nrf24_start_const_carrier();
+
+
+//Will be soon
+void nrf24_stop_const_carrier();
+
+
+/*
+ * Delay in micro seconds for more precision
+ */
+void delay_us(uint16_t del_time);
 
 
 #endif

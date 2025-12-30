@@ -17,5 +17,7 @@
 #define ce_gpio_port GPIOA
 #define ce_gpio_pin GPIO_PIN_4
 
+#define htimX htim1
+
 #endif
 
