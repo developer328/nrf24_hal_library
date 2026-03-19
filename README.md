@@ -62,9 +62,9 @@ length (DPL), automatic acknowledgment (ACK), and various data rates.
 At first configure ioc file, you will need one spi and one timer, take in account you should stay in maximum 8mbps spi speed and for timer you just need to select clock source and set PSC value correctly.
 
 ## **WARNING:** 
-You need TIMER which givs ticks in micro seconds(thats how delay_us() function works) so you will need to correctly configure prescaller value(PSC) which is depended on system frequency, for example if you have 64mhz you should set PSC 63 because it gives us 1mhz frequency and 1/1mhz = 1us period time. WITHOUT TIMER, CODE WON'T WORK!!!
+You need TIMER which givs ticks in micro seconds(thats how delay_us() function works) so you will need to correctly configure prescaller value(PSC) which is depended on system frequency, for example if you have 64mhz you should set PSC 63 because it gives us 1mhz frequency and 1/1mhz = 1us period time. *WITHOUT TIMER, CODE WON'T WORK!!!*
 
-After, open NRF24_conf.h and select SPI port, CE and CS GPIO pins and CS and CE pins, relevant GPIO ports.
+Open NRF24_conf.h and select SPI port, CE and CS pins GPIO ports and CE and CS pins.
 
 
 ## Getting started
