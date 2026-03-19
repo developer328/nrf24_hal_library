@@ -324,7 +324,7 @@ uint8_t nrf24_transmit(uint8_t *data, uint8_t size);
 /*
  * Transmit in auto_ack mode without request ack packet from RX device
  */
-void nrf24_transmit_no_ack(uint8_t *data, uint8_t size);
+uint8_t nrf24_transmit_no_ack(uint8_t *data, uint8_t size);
 
 
 /*

@@ -461,7 +461,7 @@ uint8_t nrf24_transmit(uint8_t *data, uint8_t size){
 	csn_high();
 
 	ce_high();
-	HAL_Delay(1);
+	delay_us(20);
 	ce_low();
 
 	if(nrf24_r_status() & (1 << MAX_RT)){
@@ -485,8 +485,16 @@ void nrf24_transmit_no_ack(uint8_t *data, uint8_t size){
 	csn_high();
 
 	ce_high();
-	HAL_Delay(1);
+	delay_us(20);
 	ce_low();
+
+	if(nrf24_r_status() & (1 << MAX_RT)){
+		nrf24_clear_max_rt();
+		nrf24_flush_tx();
+		return 1;
+	}
+
+	return 0;
 }
 
 void nrf24_transmit_rx_ack_pld(uint8_t pipe, uint8_t *data, uint8_t size){
@@ -527,7 +535,9 @@ void nrf24_receive(uint8_t *data, uint8_t size){
 	HAL_SPI_Receive(&hspiX, data, size, spi_r_timeout);
 	csn_high();
 
-	nrf24_clear_rx_dr();
+	if(!nrf24_read_bit(FIFO_STATUS, RX_EMPTY)){
+		nrf24_clear_rx_dr();
+	}
 }
 
 void delay_us(uint16_t del_time){
