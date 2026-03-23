@@ -82,7 +82,7 @@ Open NRF24_conf.h and select SPI port, CE and CS pins GPIO ports and CE and CS p
 
 
 ### **Configurations:**
-
+```c
     nrf24_auto_ack_all(auto_ack);
     nrf24_en_ack_pld(disable);
     nrf24_en_dyn_ack(disable);
@@ -112,7 +112,7 @@ Open NRF24_conf.h and select SPI port, CE and CS pins GPIO ports and CE and CS p
     nrf24_open_rx_pipe(0, addr);
 
     ce_high();
-
+```
 
 ## **WARNING:** 
 If you want to return register in it's own default value commenting function, with which set
