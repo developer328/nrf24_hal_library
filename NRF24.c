@@ -473,7 +473,7 @@ uint8_t nrf24_transmit(uint8_t *data, uint8_t size){
 	return 0;
 }
 
-void nrf24_transmit_no_ack(uint8_t *data, uint8_t size){
+uint8_t nrf24_transmit_no_ack(uint8_t *data, uint8_t size){
 
 	ce_low();
 
